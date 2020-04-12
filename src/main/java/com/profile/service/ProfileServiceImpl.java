@@ -42,8 +42,8 @@ public class ProfileServiceImpl implements ProfileService{
 
 	@Override
 	public BigDecimal getSavingsUsingBigDecimal(double salePrice, double actualPrice) {
-		BigDecimal ap = new BigDecimal(actualPrice);
-		BigDecimal sp = new BigDecimal(salePrice);		
+		BigDecimal ap = new BigDecimal(Double.toString(actualPrice));
+		BigDecimal sp = new BigDecimal(Double.toString(salePrice));		
         return ap.subtract(sp).multiply(new BigDecimal(100)).divide(ap,2, RoundingMode.HALF_EVEN);
 	}
 	
