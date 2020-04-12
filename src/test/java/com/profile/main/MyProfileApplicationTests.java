@@ -30,5 +30,21 @@ class MyProfileApplicationTests {
 		when(profileRepository.getProfileIntro()).thenReturn(new ProfileIntro("Arghya" ,"SoftwareEngg", "MyProfile" ,"Munich","palaec@gmail.com" ));
 		Assert.assertEquals("Arghya", profileService.getProfileIntro().getName());
 	}
+	
+	
+	@Test
+	void getInterestTest() {
+		Assert.assertEquals("120.00", profileService.getInterest("1000.00" ,"6.0" , "2").toString());
+	}
+	
+	@Test
+	void getSavingsTest() {
+		Assert.assertEquals(19.96, profileService.getSavings(80.20 , 100.20), 0.00007984031936);
+	}
 
+	
+	@Test
+	void getSavingsUsingBigDecimalTest() {
+		Assert.assertEquals("19.96", profileService.getSavingsUsingBigDecimal(80.20 , 100.20).toString());
+	}
 }

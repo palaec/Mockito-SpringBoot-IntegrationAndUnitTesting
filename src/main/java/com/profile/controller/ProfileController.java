@@ -3,10 +3,13 @@
  */
 package com.profile.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.profile.model.ProfileIntro;
@@ -26,6 +29,13 @@ public class ProfileController {
 	 ResponseEntity<Object> getProfileIntro(){	
 		ProfileIntro profileIntro = profileService.getProfileIntro();
 		return new ResponseEntity<>(profileIntro, HttpStatus.OK);		
+	}
+	
+	
+	@GetMapping(path = "/getInterest/{principle}/{rate}/{time}")
+	 ResponseEntity<String> getInterest(@PathVariable(value = "principle") String principle ,  @PathVariable(value = "rate") String rate , @PathVariable(value = "time") String time){	
+		BigDecimal  interest = profileService.getInterest(principle,rate,time);
+		return new ResponseEntity<>(interest.toString(), HttpStatus.OK);		
 	}
 	
 }
