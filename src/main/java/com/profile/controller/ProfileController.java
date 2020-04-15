@@ -38,4 +38,10 @@ public class ProfileController {
 		return new ResponseEntity<>(interest.toString(), HttpStatus.OK);		
 	}
 	
+	@GetMapping(path = "/getProfileFormat/{name}")
+	 ResponseEntity<Object> getProfileFormat(@PathVariable(value = "name") String name ){	
+		 String s = profileService.formatProfile(name);
+		return new ResponseEntity<>(s, HttpStatus.OK);		
+	}
+	
 }

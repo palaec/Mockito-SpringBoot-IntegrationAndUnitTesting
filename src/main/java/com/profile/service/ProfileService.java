@@ -14,4 +14,6 @@ public interface ProfileService {
 
 	BigDecimal getSavingsUsingBigDecimal(double salePrice, double actualPrice);
 
+	String formatProfile(String string);
+
 }

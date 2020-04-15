@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.profile.exception.NoProfileFoundException;
 import com.profile.model.ProfileIntro;
 import com.profile.repository.ProfileRepository;
 import com.profile.util.Util;
@@ -46,5 +47,15 @@ public class ProfileServiceImpl implements ProfileService{
 		BigDecimal sp = new BigDecimal(Double.toString(salePrice));		
         return ap.subtract(sp).multiply(new BigDecimal(100)).divide(ap,2, RoundingMode.HALF_EVEN);
 	}
+
+	@Override
+	public String formatProfile(String string) {
+		ProfileIntro p = repo.findProfileByEmail(string).orElseThrow(()->new NoProfileFoundException());
+		System.out.println(p.getName());
+		int sal = repo.findSalaryByName(p.getName());
+		
+		return p.getName()+sal;
+	}
+
 	
 }
